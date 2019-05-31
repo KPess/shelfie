@@ -12,6 +12,17 @@ massive(CONNECTION_STRING).then(db => {
     console.log("Database connected for simulation");
 })
 
-app.get("/api/products", controller.getAll);
+app.use(express.json());
+
+app.get("/api/products/", controller.getAll);
+app.post("/api/products/", controller.create);
+app.get("/api/products/:id", controller.getOne);
+app.put("/api/products/:id", controller.update);
+app.delete("/api/products/:id", controller.delete);
+
+
+
+
+
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

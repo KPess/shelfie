@@ -4,47 +4,51 @@ export default class Form extends Component {
   constructor() {
     super();
     this.state = {
-        URL: 'https://images.pexels.com/photos/1203803/pexels-photo-1203803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-    }
-    // this.handleSubmit = this.handleSubmit.bind(this);
+      URL:
+        "https://images.pexels.com/photos/1203803/pexels-photo-1203803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      product_name: "Hat",
+      price: 0
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({URL: e.target.value})
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
-  }
 
-//   handlePreview(value) { ()=> 
-//       this.setState({URL: value})}
+    fetch("/api/products", {
+      method: "POST",
+      body: data
+    });
+  }
   
+  //   handlePreview(value) { ()=>
+  //       this.setState({URL: value})}
 
   render() {
-    const {URL} = this.state
+    const { URL } = this.state;
     return (
-        
-      //   <form>
-      //     <img src="$2 FROM DB" alt="$3 Product name from DB" />
-      //     <input placeholder="Image URL" />
-      //     <input placeholder="Product Name" />
-      //     <input placeholder="Price" />
-      //     <submit type="button">Add to inventory</submit>
-      //   </form>
       <div className="greenbox">
-        <img src={URL} alt="your image preview" style={{height: '150px'}}/>
-        <header className="image_preview">
-        </header>
+        <img src={URL} alt="your image preview" style={{ height: "150px" }} />
+        <header className="image_preview" />
         <form id="new_product_form" onSubmit={this.handleSubmit}>
           <label htmlFor="image_url">Image URL:</label>
-          <input onChange='{}' id="image_url" name="image_url" type="text" />
+          <input onChange={this.handleChange} id="image_url" name="image_url" type="text" value={URL}/>
           <label htmlFor="product_name">Product Name:</label>
-          <input id="product_name" name="product_name" type="text" />
-
+          <input id="product_name" name="product_name" type="text" value={this.product_name}/>
           <label htmlFor="price">Price:</label>
-          <input id="price" name="price" type="text" />
-
-          <button style={{backgroundColor: '#ED6B5A'}}>Add to inventory</button>
+          <input id="price" name="price" type="text" value={this.price} />
+          <button style={{ backgroundColor: "#ED6B5A" }}>
+            Add to inventory
+          </button>
         </form>
-        <button style={{backgroundColor: '#ED6B5A'}}>Cancel</button>
+        <button style={{ backgroundColor: "#ED6B5A" }}>Cancel</button>
       </div>
     );
   }

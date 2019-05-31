@@ -4,12 +4,6 @@
   padding: auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
   background-color: #AB2A19;
   min-height: 5vh;
@@ -19,6 +13,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
   padding-left: 5vw;
 }
 
@@ -49,6 +46,7 @@ Form {
   flex-direction: column;
   padding: 2.5vh;
   background-color: #3AD886;
+
 }
 
 .greenbox {
