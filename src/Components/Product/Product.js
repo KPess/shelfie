@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class Product extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      products: []
+    
     };
   }
 
-  componentDidMount() {
-    axios.get("/api/products").then(response => {
-      this.setState({ products: response.data });
-    });
-  }
+
+  // componentDidMount() {
+  //   axios.get("/api/products").then(response => {
+  //     this.setState({ products: response.data });
+  //   });
+  // }
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     let item = products.map((property, index) => {
     return (
       <div className="productbox">
@@ -25,7 +26,7 @@ export default class Product extends Component {
         <div key={index}>
           <h1 key="product_name">{property.product_name}</h1>
           <h2>
-            {property.price}
+            ${property.price}
           </h2>
         </div>
         <button
@@ -48,4 +49,11 @@ export default class Product extends Component {
       <div>{item}</div>
     )
   };
+
+  
+  componentDidUpdate() {
+    axios.put("/api/products").then(response => {
+      this.props({ products: response.data });
+    });
+  }
 }
