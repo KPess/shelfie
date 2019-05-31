@@ -14,6 +14,10 @@ export default class Form extends Component {
     const data = new FormData(e.target);
   }
 
+//   handlePreview(value) { ()=> 
+//       this.setState({URL: value})}
+  
+
   render() {
     const {URL} = this.state
     return (
@@ -28,10 +32,10 @@ export default class Form extends Component {
       <div className="greenbox">
         <img src={URL} alt="your image preview" style={{height: '150px'}}/>
         <header className="image_preview">
-          <label htmlFor="image_url">Image URL:</label>
-          <input onChange='' id="image_url" name="image_url" type="text" />
         </header>
         <form id="new_product_form" onSubmit={this.handleSubmit}>
+          <label htmlFor="image_url">Image URL:</label>
+          <input onChange='{}' id="image_url" name="image_url" type="text" />
           <label htmlFor="product_name">Product Name:</label>
           <input id="product_name" name="product_name" type="text" />
 

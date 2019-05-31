@@ -12,4 +12,6 @@ massive(CONNECTION_STRING).then(db => {
     console.log("Database connected for simulation");
 })
 
+app.get("/api/products", controller.getAll);
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
